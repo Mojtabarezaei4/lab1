@@ -34,7 +34,10 @@ static List<string> Scanner(string input)
                 else
                 {
                     result += input[i];
-                    results.Add(result);
+                    if (result.Length > 2)
+                    {
+                        results.Add(result);
+                    }
                     break;
                 }
             }
