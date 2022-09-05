@@ -1,9 +1,16 @@
 ﻿
 List<string> scanner = Scanner("29535123p48723487597645723645");
-Console.WriteLine("Sum: " + Sum(scanner));
-//2953512 3p48723487597645723645
+
 Coloring("29535123p48723487597645723645", scanner);
 
+Console.WriteLine("Sum: " + Sum(scanner));
+
+
+/*
+ * Find the sequence of numbers which starts and ends with same digit.
+ *
+ * Return a List
+ */
 static List<string> Scanner(string input)
 {
     string result = "";
@@ -27,7 +34,6 @@ static List<string> Scanner(string input)
                 else
                 {
                     result += input[i];
-                    //Console.WriteLine(result);
                     results.Add(result);
                     break;
                 }
@@ -39,28 +45,48 @@ static List<string> Scanner(string input)
         }
         result = "";
     }
-
-    //foreach (string s in results)
-    //{
-    //    Console.WriteLine(s);
-    //}
-
     return results;
 }
 
+
+/*
+ * If the string contains the list the change the color of the list items.
+ *
+ * Return nothing.
+ */
 static void Coloring(string theString, List<string> input)
 {
-    List<string> temp = new ;
     for (int i = 0; i < input.Count; i++)
     {
-        theString.Replace(input[i], "---");
-        Console.ForegroundColor = ConsoleColor.DarkCyan;
+        string[] temp = theString.Split(input[i]);
+        if (temp[0] == "")
+        {
+            Console.ForegroundColor = ConsoleColor.DarkCyan;
+            Console.Write(input[i]);
+            Console.ForegroundColor = ConsoleColor.White;
+
+            Console.Write(temp[1]);
+
+        }
+        else if (temp[0] != "")
+        {
+            Console.Write(temp[0]);
+            Console.ForegroundColor = ConsoleColor.DarkCyan;
+            Console.Write(input[i]);
+            Console.ForegroundColor = ConsoleColor.White;
+
+            Console.Write(temp[1]);
+        }
         Console.WriteLine();
-        Console.ForegroundColor = ConsoleColor.White;
     }
 }
 
 
+/*
+ * Adding the items in the list.
+ *
+ * Return sum as int.
+ */
 static long Sum(List<string> input)
 {
     long result = 0;
@@ -69,6 +95,5 @@ static long Sum(List<string> input)
         long temp = long.Parse(input[i]);
         result += temp;
     }
-
     return result;
 }
